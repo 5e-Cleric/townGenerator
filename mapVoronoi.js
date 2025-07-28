@@ -1,4 +1,4 @@
-import { createNoise2D } from 'https://cdn.jsdelivr.net/npm/simplex-noise@4.0.1/dist/esm/simplex-noise.js';
+import { createNoise2D } from 'https://esm.sh/simplex-noise@4.0.1';
 import { Delaunay } from 'https://cdn.jsdelivr.net/npm/d3-delaunay@6/+esm';
 
 const canvas = document.getElementById('town');
