@@ -9,13 +9,13 @@ const SPRITE_WIDTH = 38;
 const SPRITE_HEIGHT = 64;
 const SPRITES_PER_ROW = 8;
 const NUM_SPRITES = 8;
-const spriteScale = parseInt(localStorage.getItem('houseSize')) || 0.5;
+const spriteScale = parseFloat(localStorage.getItem('houseSize'));
 
-const CANVAS_SIZE = parseInt(localStorage.getItem('canvasSize')) || 600;
-const ROAD_STEP = parseInt(localStorage.getItem('roadDensity')) || 50; //the larger, the less points
+const CANVAS_SIZE = parseInt(localStorage.getItem('canvasSize'));
+const ROAD_STEP = parseInt(localStorage.getItem('roadDensity')); //the larger, the less points
 const NOISE_SCALE = 0.1; //the smaller, the less points
 const ROAD_THRESHOLD = 0; //the larger, the less points
-const ROAD_WIDTH = parseInt(localStorage.getItem('roadWidth')) || 10;
+const ROAD_WIDTH = parseInt(localStorage.getItem('roadWidth'));
 
 let points = [];
 for (let x = 0; x < CANVAS_SIZE; x += ROAD_STEP) {
@@ -181,10 +181,13 @@ function filterEdges(edges) {
 
 function getHousePoints(
 	edges,
-	density = parseInt(localStorage.getItem('houseDensity')) || 1,
+	density = parseFloat(localStorage.getItem('houseDensity')) || 1,
 	minDist = ROAD_STEP * spriteScale + 1,
-	offset = ROAD_STEP * spriteScale + 5
+	offset =  ROAD_STEP * spriteScale + 2
 ) {
+
+	console.log(minDist);
+	console.log(offset);
 	const housePoints = [];
 
 	const houseEdges = [];
@@ -230,9 +233,11 @@ function getHousePoints(
 			];
 
 			for (const p of candidates) {
+				if(isTooCloseToEdge) console.log('too close');
+
 				if (
 					!isTooCloseToEdge(p) &&
-					!housePoints.some((h) => distSquared([p.x, p.y], [h.x, h.y]) < minDist * minDist)
+					!housePoints.some((h) => distSquared([p.x, p.y], [h.x, h.y]) < minDist **2.2)
 				) {
 					p.spriteIndex = Math.floor(Math.random() * NUM_SPRITES);
 					housePoints.push(p);

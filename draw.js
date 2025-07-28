@@ -3,7 +3,7 @@ import { drawVoronoi } from './mapVoronoi.js';
 
 function draw() {
 	const mode = localStorage.getItem('mode') || 'noise';
-	const pattern = localStorage.getItem('pattern') || 'noise';
+	const pattern = localStorage.getItem('pattern') || 'voronoi';
 
 	if (pattern === 'noise') {
 		console.log('should be drawing noise');
