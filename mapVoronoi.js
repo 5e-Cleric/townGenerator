@@ -1,5 +1,5 @@
-import { createNoise2D } from 'https://esm.sh/simplex-noise@4.0.1';
-import { Delaunay } from 'https://cdn.jsdelivr.net/npm/d3-delaunay@6/+esm';
+import { createNoise2D } from 'https://esm.sh/simplex-noise@4.0.1.js';
+import { Delaunay } from 'https://cdn.jsdelivr.net/npm/d3-delaunay@6/+esm.js';
 
 const canvas = document.getElementById('town');
 const ctx = canvas.getContext('2d');
@@ -36,7 +36,7 @@ const delaunay = Delaunay.from(voronoiPoints);
 const voronoi = delaunay.voronoi([0, 0, canvas.width, canvas.height]);
 
 const houseSheet = new Image();
-houseSheet.src = '/images/roofs/spritesheet.png';
+houseSheet.src = './townGenerator/images/roofs/spritesheet.png';
 
 function drawVoronoi() {
 	ctx.clearRect(0, 0, CANVAS_SIZE, CANVAS_SIZE);
