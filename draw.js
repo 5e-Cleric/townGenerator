@@ -1,5 +1,5 @@
-import { drawNoise } from './mapNoise.js';
-import { drawVoronoi } from './mapVoronoi.js';
+import { drawNoise } from './townGenerator/mapNoise.js';
+import { drawVoronoi } from './townGenerator/mapVoronoi.js';
 
 function draw() {
 	const mode = localStorage.getItem('mode') || 'noise';
