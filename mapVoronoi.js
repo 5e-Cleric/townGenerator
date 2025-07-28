@@ -36,7 +36,7 @@ const delaunay = Delaunay.from(voronoiPoints);
 const voronoi = delaunay.voronoi([0, 0, canvas.width, canvas.height]);
 
 const houseSheet = new Image();
-houseSheet.src = './townGeneratora/images/roofs/spritesheet.png';
+houseSheet.src = './townGenerator/roofs/spritesheet.png';
 
 function drawVoronoi() {
 	ctx.clearRect(0, 0, CANVAS_SIZE, CANVAS_SIZE);
