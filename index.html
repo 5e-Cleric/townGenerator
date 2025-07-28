@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Town Generator</title>
+		<link rel="stylesheet" href="style.css">
+	</head>
+	<body>
+
+		<main>
+			<aside class="sidebar">
+				<h2>Generator Settings</h2>
+				<form id="settings">
+					<label>
+						<p>Starting pattern:</p>
+						<select id="pattern" default>
+							<option value="voronoi">Voronoi Pattern</option>
+							<option value="noise">classic noise</option>
+						</select>
+					</label>
+					<label>
+						<p>Displayed output:</p>
+						<select id="mode" default>
+							<option value="pattern">Pattern</option>
+							<option value="roads">Roads</option>
+						</select>
+					</label>
+
+					<label>
+						<p>Canvas Size:</p>
+						<input type="number" id="canvasSize" value="600">
+					</label>
+
+					<label>
+						<p>Road Density:</p>
+						<input type="range" id="roadDensity" value="50" min="10" max="100">
+					</label>
+
+					<label>
+						<p>Road Width:</p>
+						<input type="range" id="roadWidth" value="10" min="5" max="20" step="1">
+					</label>
+
+					<label>
+						<p>House sizes:</p>
+						<input type="range" id="houseSize" value="1" min="0" max="5" step="0.1">
+					</label>
+
+					<label>
+						<p>House density:</p>
+						<input type="range" id="houseDensity" value="1" min="0" max="5"
+							step="0.1">
+					</label>
+
+					<button onclick="location.reload()">Regenerate</button>
+				</form>
+
+			</aside>
+			<div class="canvasHolder">
+				<div class="grid">
+					<div class="xLabels"></div>
+					<div class="yLabels"></div>
+				</div>
+
+				<svg style="position: absolute; width: 0; height: 0;">
+					<filter id="pencil-filter-5" x="0" y="0" width="2"
+						height="2" filterUnits="objectBoundingBox">
+						<feturbulence type="fractalNoise" baseFrequency="0.2"
+							numOctaves="4" result="noise" />
+						<fedisplacementmap in="SourceGraphic" in2="noise"
+							scale="5" xChannelSelector="R"
+							yChannelSelector="G" />
+					</filter>
+				</svg>
+
+				<canvas id="town" width="600" height="600"
+					style="filter: url(#pencil-filter-)">
+				</canvas>
+
+				<div class="redGrid"></div>
+			</div>
+			<aside class="sidebar">
+				<h2>Assets</h2>
+				<ul class="dropdownList">
+					<li>
+						<div class="dropdown">
+							<div class="trigger"><h3>Roofs</h3></div>
+							<div class="box" data-load="roofs"></div>
+						</div>
+					</li>
+					<li>
+						<div class="dropdown">
+							<div class="trigger"><h3>Roads</h3></div>
+						</div>
+					</li>
+					<li>
+						<div class="dropdown">
+							<div class="trigger"><h3>Background</h3></div>
+						</div>
+					</li>
+				</ul>
+			</aside>
+
+		</main>
+
+		<script type="module" src="assignEvents.js"></script>
+		<script type="module" src="loadAssets.js"></script>
+		<script type="module" src="mapNoise.js"></script>
+		<script type="module" src="mapVoronoi.js"></script>
+		<script type="module" src="draw.js"></script>
+
+	</body>
+</html>
